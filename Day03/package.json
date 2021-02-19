@@ -1,0 +1,9 @@
+{
+  "name": "Day04",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "indra",
+  "dependencies": {
+    "typescript": "^4.1.3"
+  }
+}
