@@ -1,0 +1,62 @@
+React
+=================================================================
+Video 8b
+====================================================================
+cara buat element menggunakan Object (untuk react js) :
+    1.  return {
+        type: 'li',
+        props: {id: 'xyz', onClick: () => {} },
+        children : Halo
+    }
+
+    2. return createElement('li', { id: 'xyz', onClick: () => {} }, 'Halo');
+    Note : Format createElement = createElement(type, props(bentuknya object) , children)
+
+    Bentuk asal :
+    return `
+        <li id = 'xyz' onClick=emitEvent('done')>Halo</li>
+        `
+ -------------------------------------------------------------------------
+Bentuk awal :
+return`
+    <p>Hello,Its your To DO list</p>
+    <ul>
+        ${state.todoItems.map( (item) => renderToDo(item)).join('')}
+    </ul>
+    <input id="myInput" type="text" 
+        value="${state.newItem}" 
+        onInput="emitEvent('inputList', this.value)"
+     />
+    <button onClick="emitEvent('saveNewItem')">Save</button>
+    `;
+
+Bentuk dengan React :
+return [
+    {
+        type: 'ul',
+        props: {},
+        children: state.todoItems.map( (item) => renderToDo(item)).join('')
+    },
+    {
+        type: 'input',
+        props: {
+            id: 'myInput',
+            type: 'text',
+            value: state.newItem,
+            onInput: () => {},
+        },
+        children: null,
+    },
+    {
+        type:'button',
+        props:{
+            onClick: ()=>{},
+        },
+        children: 'Save',
+    }
+];
+
+=================================================================
+Video 8c
+=================================================================
+1. Setiap Fungsi untuk menghasilkan komponen diawali oleh huruf kapital
