@@ -1,0 +1,21 @@
+Catatan element di react native
+- View itu sama dengan div
+- kita gk bisa langsung nulis kalimat gitu 
+<View>
+Hello 
+</View> ini tidak bisa
+
+harus seperti ini
+
+<View>
+<Text>Hello</Text>
+</View>
+
+- Text itu sama dengan <p> atau <span>
+
+- kebanyakan komponen di react js itu cross platform
+- ActivityIndicator itu cross platform
+- komponen penting : Button, Image, KeyBoardAvoidingView , ListView, Modal, ScrollView, Slider, StatusBar,
+ Switch, TextInput, Toucables (kayak semacam a href gitu kalau di web), webView
+- fetch data, addlistener itu di componentDidMount
+- 
