@@ -1,0 +1,48 @@
+<html>
+  <head></head>
+  <body>
+    <form id="form" method="POST" action="/submit-json" target="">
+      <input id="pName" type="text" name="productName" placeholder="product name" /><br />
+      <input id="price" type="text" name="productPrice" placeholder="price" /><br />
+      <button type="submit">Send</button>
+    </form>
+
+    <script>
+      let form = document.getElementById('form');
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        let data = {};
+        let inputs = document.getElementsByTagName('input');
+        for (let input of Array.from(inputs)) {
+          let name = input.name;
+          let value = input.value;
+          data[name] = value;
+        }
+        sendData(data);
+        // fetch('/submit-json', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'x-file-type': '.json',
+        //   },
+        //   body: JSON.stringify({ product_name: productName, product_price: productPrice }),
+        // });
+      });
+
+      async function sendData(data) {
+        let response = await fetch('/submit-json', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-file-type': '.json',
+          },
+          body: JSON.stringify(data),
+        });
+        console.log(response.headers);
+        let body = await response.json();
+        console.log(body);
+      }
+    </script>
+  </body>
+</html>
