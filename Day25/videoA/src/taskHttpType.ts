@@ -16,8 +16,7 @@ server.on('request', (request, response) => {
     }
     case '/submit': {
       if (request.method === 'POST') {
-        // getData(request, response);
-        parseRequestBody(request, response);
+        checkAndPrintData(request, response);
       } else {
         response.statusCode = 405;
         response.setHeader('Content-Type', 'text/html');
@@ -44,7 +43,7 @@ function serveHomePage(request: any, response: any) {
   response.setHeader('Content-Type', 'text/html');
   readStream.pipe(response);
 }
-async function parseRequestBody(request: any, response: any) {
+async function checkAndPrintData(request: any, response: any) {
   if (request.headers['content-type'] !== 'application/json') {
     response.statusCode = 405;
     response.statusMessage = 'Bad Request';
@@ -94,6 +93,8 @@ async function parseRequestBody(request: any, response: any) {
     response.end();
   });
 }
+
+function checkData(data: object) {}
 
 function serveNotFoundPage(request: any, response: any) {
   response.statusCode = 404;
