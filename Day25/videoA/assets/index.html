@@ -1,0 +1,35 @@
+<html>
+  <head></head>
+  <body>
+    <form id="form" method="POST" action="/submit">
+      <input type="text" name="productName" placeholder="product name" /><br />
+      <input type="text" name="productPrice" placeholder="price" /><br />
+      <button type="submit">Send</button>
+    </form>
+
+    <script>
+      let form = document.getElementById('form');
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        let inputs = document.getElementsByTagName('input');
+        let data = {};
+        for (let input of Array.from(inputs)) {
+          let name = input.name;
+          let value = input.value;
+          data[name] = value;
+        }
+
+        console.log(JSON.stringify(data));
+
+        let response = fetch('/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+      });
+    </script>
+  </body>
+</html>
