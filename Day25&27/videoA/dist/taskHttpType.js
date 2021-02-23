@@ -54,8 +54,7 @@ server.on('request', function (request, response) {
         }
         case '/submit': {
             if (request.method === 'POST') {
-                // getData(request, response);
-                parseRequestBody(request, response);
+                checkAndPrintData(request, response);
             }
             else {
                 response.statusCode = 405;
@@ -81,7 +80,7 @@ function serveHomePage(request, response) {
     response.setHeader('Content-Type', 'text/html');
     readStream.pipe(response);
 }
-function parseRequestBody(request, response) {
+function checkAndPrintData(request, response) {
     return __awaiter(this, void 0, void 0, function () {
         var receivedData, jsonData, data, print, number;
         return __generator(this, function (_a) {
@@ -141,6 +140,7 @@ function parseRequestBody(request, response) {
         });
     });
 }
+function checkData(data) { }
 function serveNotFoundPage(request, response) {
     response.statusCode = 404;
     response.statusMessage = 'Not Found';

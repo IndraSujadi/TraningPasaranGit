@@ -4,8 +4,8 @@ function toStringArray(input: any): Array<string> {
   let result: string[] = [];
   if (Array.isArray(input)) {
     input.map(item => {
-      if (item != null) {
-        result.push(item.toString());
+      if (typeof item === 'string') {
+        result.push(item);
       }
     });
     return result;
@@ -13,8 +13,8 @@ function toStringArray(input: any): Array<string> {
   return result;
 }
 
-// let input = ['hello', true, null, undefined, false, 2000];
-// console.log(toStringArray(input));
+let input = ['hello', true, null, undefined, false, 2000];
+console.log(toStringArray(input));
 
 function toArrayOf<T>(input: any, mapFunction: (param: any) => T): Array<T> {
   if (Array.isArray(input)) {
@@ -23,11 +23,12 @@ function toArrayOf<T>(input: any, mapFunction: (param: any) => T): Array<T> {
     });
 
     return result;
+  } else {
+    return [];
   }
-  return [];
 }
 
-let input = ['hello', true, null, undefined, false, 2000];
-let result = toArrayOf(input, x => (typeof x === 'string' ? x : ''));
+// let input = ['hello', true, null, undefined, false, 2000];
+// let result = toArrayOf(input, x => (typeof x === 'string' ? x : ''));
 
-console.log(result);
+// console.log(result);

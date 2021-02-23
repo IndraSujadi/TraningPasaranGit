@@ -1,0 +1,8 @@
+cheat sheet Typescript vs flow type  URL  = github.com/niieani/typescript-vs-flowtype
+
+Perbedaan Typescript dan FlowTypes :
+- Typescript type unknown sama dengan mixed in flow
+- ketika importing 'Types" tidak perlu import Type, cukup import aja
+- untuk variables and parameter  menggunakan 'undefined' dibandingkan 'void'
+- in TS , tidak dapat menggunakan maybe operator 'nama : ?foo" tapi pakai union 'nama: string | null'
+- Ts punya enum
