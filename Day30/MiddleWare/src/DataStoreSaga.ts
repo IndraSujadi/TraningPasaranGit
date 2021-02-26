@@ -27,7 +27,7 @@ function fetchStuffMiddleware({ dispatch }) {
 // KALAU MAU DISPATCH PAKAI PUT
 
 // saga mirip generator
-function* loginSaga() {
+function* loginSaga(fetchFromServer: Function) {
   // 1. wait for user to enter their details and press 'login'
   // 2. send Details to server, and wait for reply
   // 3. if server says failure, show a notification and go to step 1
@@ -54,6 +54,18 @@ function* loginSaga() {
     }
   }
 }
+
+// ====================TESTING LOGIN SAGA=================================================
+it("Should dispatch LOGIN_SUCCESSS", () => {
+  let fetchFromServer = jest.fn();
+  let gen = loginSaga();
+  let { done, value } = gen.next();
+  expect(value).toEqual(take("LOGIN_SUBMITTED"));
+  let { done, value } = gen.next({ username: "indra", password: "123456" });
+  expect(value).toEqual(call(fetchFromServer, "indra", "123456"));
+  let { done, value } = gen.next({ isSuccess: true, authToken: "abc" });
+  expect(value).toEqual(put({ type: "LOGIN_SUCCESS", authToken: "abc" }));
+});
 
 async function fetchFriends(userID: string, dispatch: any) {
   let url = `/api/users/${userID}/friends`;
